@@ -27,7 +27,7 @@ void setup () {
   ty = random(30,431);
   ex = 0;
   ey_c = random(30,431);
-  ey_b = random(30,230); 
+  ey_b = random(30,220); 
   ey_a = random(110,300); 
 }
 void draw() {
@@ -93,6 +93,7 @@ void draw() {
            
           if(level==2||level==1){
             image(enemy,ex-j*51,ey_a+level*51);
+            image(enemy,ex-j*51,ey_a-level*51);
           }
           else
             image(enemy,ex-(j%5)*51,ey_a);
@@ -168,4 +169,5 @@ void keyReleased(){
       break;
     }
   }
+}
 }
