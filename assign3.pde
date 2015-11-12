@@ -7,6 +7,7 @@ int background_speed, state = GAME_START,i = 1,level;
 boolean upPressed = false, downPressed = false, leftPressed = false, rightPressed = false;
 
 void setup () {
+  frameRate(40);
   size(640,480) ;
   background_speed = 0;
   bg1 = loadImage("img/bg1.png");
@@ -21,13 +22,13 @@ void setup () {
   end1 = loadImage("img/end2.png");
   
   hp = 45;
-  fx= random(0,599);
+  fx= 589;
   fy = random(30,431);
   tx = random(0,599);
   ty = random(30,431);
   ex = 0;
-  ey_c = random(30,431);
-  ey_b = random(30,220); 
+  ey_c = random(30,430);
+  ey_b = random(30,180); 
   ey_a = random(110,300); 
 }
 void draw() {
@@ -52,7 +53,7 @@ void draw() {
       image(bg1,-640 + background_speed % 1280,0);
   
       //hp
-      fill(256,0,0);
+      fill(255,0,0);
       rect(11,6,hp,29);
       image(hpimage,5,5);
   
@@ -62,22 +63,22 @@ void draw() {
       //enemy wave
       if(i==1){
       for(int j=0; j<=4;j++){        //enemyC
-         image(enemy,ex-j*51,ey_c);
-         if(ex == 844){
+         image(enemy,ex-(j+1)*60,ey_c);
+         if(ex == 960){
            i = 2;
            ex = 0;
-           ey_c = random(30,431);
+           ey_c = random(30,430);
            break;
          }
       }
       }
       else if(i==2){        //enemyB
       for(int j=0; j<=4;j++){
-         image(enemy,ex-j*51,ey_b+j*51);
-          if(ex == 844){
+         image(enemy,ex-(j+1)*60,ey_b+j*60);
+          if(ex == 960){
            i = 3;
            ex = 0;
-           ey_b = random(30,230); 
+           ey_b = random(30,180); 
            break;
          }
       }
@@ -92,12 +93,12 @@ void draw() {
             level = 3;
            
           if(level==2||level==1){
-            image(enemy,ex-j*51,ey_a+level*51);
-            image(enemy,ex-j*51,ey_a-level*51);
+            image(enemy,ex-(j+1)*60,ey_a+level*60);
+            image(enemy,ex-(j+1)*60,ey_a-level*60);
           }
           else
-            image(enemy,ex-(j%5)*51,ey_a);
-          if(ex == 844){
+            image(enemy,ex-(j%5+1)*60,ey_a);
+          if(ex == 960){
              i = 1;
              ex = 0;
              ey_a = random(110,300); 
@@ -169,4 +170,5 @@ void keyReleased(){
       break;
     }
   }
+}
 }
