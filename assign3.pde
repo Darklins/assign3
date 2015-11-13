@@ -7,7 +7,7 @@ int background_speed, state = GAME_START,i = 1,level;
 boolean upPressed = false, downPressed = false, leftPressed = false, rightPressed = false;
 
 void setup () {
-  frameRate(40);
+  frameRate(60);
   size(640,480) ;
   background_speed = 0;
   bg1 = loadImage("img/bg1.png");
@@ -62,8 +62,8 @@ void draw() {
       
       //enemy wave
       if(i==1){
-      for(int j=0; j<=4;j++){        //enemyC
-         image(enemy,ex-(j+1)*60,ey_c);
+      for(int j=1; j<=5;j++){        //enemyC
+         image(enemy,ex- j*60,ey_c);
          if(ex == 960){
            i = 2;
            ex = 0;
@@ -73,8 +73,8 @@ void draw() {
       }
       }
       else if(i==2){        //enemyB
-      for(int j=0; j<=4;j++){
-         image(enemy,ex-(j+1)*60,ey_b+j*60);
+      for(int j=1; j<=5;j++){
+         image(enemy,ex- j *60,ey_b+j*60);
           if(ex == 960){
            i = 3;
            ex = 0;
@@ -84,20 +84,20 @@ void draw() {
       }
       }
       else{        //enemyA
-        for(int j= 0; j<5; j++){
-          if(j==1||j==3)
+        for(int j= 1; j<6; j++){
+          if(j==2||j==4)
             level = 1;
-          else if(j==2)
+          else if(j==3)
             level = 2;
           else
             level = 3;
            
           if(level==2||level==1){
-            image(enemy,ex-(j+1)*60,ey_a+level*60);
-            image(enemy,ex-(j+1)*60,ey_a-level*60);
+            image(enemy,ex- j *60,ey_a+level*60);
+            image(enemy,ex- j *60,ey_a-level*60);
           }
           else
-            image(enemy,ex-(j%5+1)*60,ey_a);
+            image(enemy,ex-(j%6)*60,ey_a);
           if(ex == 960){
              i = 1;
              ex = 0;
@@ -170,5 +170,4 @@ void keyReleased(){
       break;
     }
   }
-}
 }
